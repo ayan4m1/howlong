@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Megrim&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: "Megrim", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2rem;
+}
+
+main {
+  display: flex;
+  background-color: #262323;
+  color: #fefefe;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rainbow-word {
+  background: radial-gradient(
+    circle at 100%,
+    #780000,
+    #c1121f 20%,
+    #669bbc 40%,
+    #003049 60%,
+    #fdf0d5 80%
+  );
+  background-size: 200% auto;
+  color: #000;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animatedTextGradient 1.5s linear infinite;
+}
+
+@keyframes animatedTextGradient {
+  to {
+    background-position: 200% center;
+  }
+}
