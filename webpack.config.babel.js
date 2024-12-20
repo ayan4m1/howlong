@@ -1,9 +1,10 @@
 import { resolve } from 'path';
 import autoprefixer from 'autoprefixer';
 import HtmlPlugin from 'html-webpack-plugin';
+import CnamePlugin from 'cname-webpack-plugin';
+import { CopyPlugin } from 'copy-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
-import CnameWebpackPlugin from 'cname-webpack-plugin';
 import StylelintPlugin from 'stylelint-webpack-plugin';
 import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -13,7 +14,10 @@ import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin';
 const dev = process.env.NODE_ENV === 'development';
 
 const plugins = [
-  new CnameWebpackPlugin({
+  new CopyPlugin({
+    patterns: ['public/']
+  }),
+  new CnamePlugin({
     domain: 'howlonguntilwerefucked.com'
   }),
   new CleanPlugin(),
@@ -79,6 +83,10 @@ export default {
             options: { minimize: true }
           }
         ]
+      },
+      {
+        test: /\.glsl$/,
+        type: 'asset/source'
       }
     ]
   },
@@ -97,13 +105,6 @@ export default {
     }
   },
   optimization: {
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          ecma: 20
-        }
-      }),
-      new CssMinimizerPlugin()
-    ]
+    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()]
   }
 };

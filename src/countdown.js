@@ -5,6 +5,9 @@ import {
   formatDuration
 } from 'date-fns';
 import { useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+
+import Flag from './flag';
 
 const inauguration = parseISO('2025-01-25T10:00:00-5');
 
@@ -28,6 +31,9 @@ export default function Countdown() {
 
   return (
     <main>
+      <Canvas style={{ width: 600, height: 400 }}>
+        <Flag />
+      </Canvas>
       <h1 className="rainbow-word">We are all fucked in</h1>
       <h2>{timeLeft}</h2>
     </main>
