@@ -1,5 +1,7 @@
 import { resolve } from 'path';
 import autoprefixer from 'autoprefixer';
+// eslint-disable-next-line import-x/default
+import CopyPlugin from 'copy-webpack-plugin';
 import HtmlPlugin from 'html-webpack-plugin';
 import CnamePlugin from 'cname-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
@@ -8,7 +10,6 @@ import StylelintPlugin from 'stylelint-webpack-plugin';
 import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import { CopyWebpackPlugin as CopyPlugin } from 'copy-webpack-plugin';
 import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin';
 
 const dev = process.env.NODE_ENV === 'development';
