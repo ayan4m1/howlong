@@ -26,7 +26,7 @@ export default function Flag() {
   return (
     <Fragment>
       <ambientLight intensity={1} />
-      <PerspectiveCamera fov={30} makeDefault position={[0, 0, 3]} />
+      <PerspectiveCamera fov={30} makeDefault position={[0, -0.2, 3]} />
       <mesh position={[-1.055, 0, 0]}>
         <cylinderGeometry args={[0.1, 0.1, 10, 64, 64]} />
         <meshPhysicalMaterial color="#b5c0c9" />
