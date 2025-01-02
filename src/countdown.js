@@ -11,7 +11,7 @@ import { Canvas } from '@react-three/fiber';
 import Flag from './flag';
 import { Helmet } from 'react-helmet';
 
-const inauguration = parseISO('2025-01-25T10:00:00-5');
+const inauguration = parseISO('2025-01-25T12:00:00-5');
 
 const getRemainingTime = () => {
   const now = Date.now();
