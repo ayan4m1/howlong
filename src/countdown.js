@@ -5,7 +5,7 @@ import {
   formatDuration,
   isAfter
 } from 'date-fns';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 
 import Flag from './flag';
@@ -30,18 +30,35 @@ const getRemainingTime = () => {
 };
 
 export default function Countdown() {
+  const [size, setSize] = useState(null);
   const [timeLeft, setTimeLeft] = useState(getRemainingTime());
 
-  setInterval(() => {
-    setTimeLeft(getRemainingTime());
-  }, 1000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft(getRemainingTime());
+    }, 1000);
+
+    const handleResize = () => {
+      const width = Math.min(window.innerWidth, 600);
+
+      setSize([width, width / (3 / 2)]);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('resize', handleResize);
+    };
+  });
 
   return (
     <main>
       <Helmet>
         <title>How Long Until We Are Fucked</title>
       </Helmet>
-      <Canvas style={{ width: 600, height: 400 }}>
+      <Canvas style={{ width: size?.[0], height: size?.[1] }}>
         <Flag />
       </Canvas>
       <h1 className="rainbow-word">
