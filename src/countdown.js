@@ -51,7 +51,7 @@ export default function Countdown() {
       clearInterval(interval);
       window.removeEventListener('resize', handleResize);
     };
-  });
+  }, []);
 
   return (
     <main>
