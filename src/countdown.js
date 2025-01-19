@@ -5,13 +5,13 @@ import {
   formatDuration,
   isAfter
 } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
-
-import Flag from './flag';
 import { Helmet } from 'react-helmet';
+import { Canvas } from '@react-three/fiber';
+import { useEffect, useState } from 'react';
 
-const inauguration = parseISO('2025-01-25T12:00:00-5');
+import Flag from './flag.js';
+
+const inauguration = parseISO('2025-01-20T12:00:00-5');
 
 const getRemainingTime = () => {
   const now = Date.now();
@@ -59,7 +59,7 @@ export default function Countdown() {
         <title>How Long Until We Are Fucked</title>
       </Helmet>
       <Canvas style={{ width: size?.[0], height: size?.[1] }}>
-        <Flag />
+        <Flag timeLeft={timeLeft} />
       </Canvas>
       <h1 className="rainbow-word">
         We are all fucked{Boolean(timeLeft) && ' in'}
