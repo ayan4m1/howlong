@@ -44,10 +44,7 @@ export default [
   {
     files: ['webpack*.js'],
     languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.browser
-      }
+      globals: globals.node
     }
   },
   prettierPlugin
