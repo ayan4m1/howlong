@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import { TextureLoader } from 'three';
-import { useMemo, Fragment, useEffect } from 'react';
+import { useMemo, Fragment } from 'react';
 import { PerspectiveCamera } from '@react-three/drei';
 import { useThree, useFrame, useLoader } from '@react-three/fiber';
 
 import vertexShader from './shaders/vertex.glsl';
-import fragmentShader from './shaders/fragment.glsl';
+import fireFragmentShader from './shaders/fragment-fire.glsl';
+import texFragmentShader from './shaders/fragment.glsl';
 
 export default function Flag({ timeLeft }) {
   const { clock } = useThree();
@@ -13,8 +14,7 @@ export default function Flag({ timeLeft }) {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uTexture: { value: texture },
-      uFire: { value: false }
+      uTexture: { value: texture }
     }),
     [texture]
   );
@@ -24,10 +24,6 @@ export default function Flag({ timeLeft }) {
       uniforms.uTime.value = clock.getElapsedTime();
     }
   });
-
-  useEffect(() => {
-    uniforms.uFire.value = !timeLeft;
-  }, [uniforms.uFire, timeLeft]);
 
   return (
     <Fragment>
@@ -40,7 +36,7 @@ export default function Flag({ timeLeft }) {
       <mesh>
         <boxGeometry args={[1.9, 1, 0.01, 100, 100]} />
         <shaderMaterial
-          fragmentShader={fragmentShader}
+          fragmentShader={timeLeft ? texFragmentShader : fireFragmentShader}
           uniforms={uniforms}
           vertexShader={vertexShader}
         />
