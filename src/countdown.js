@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 
 import Flag from './flag.js';
 
-const inauguration = parseISO('2025-01-20T12:00:00-5');
+const inauguration = parseISO('2025-01-20T17:00:00Z');
 
 const getRemainingTime = () => {
   const now = Date.now();
